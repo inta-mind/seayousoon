@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" fill="none">
+  <!-- circular background -->
+  <circle cx="40" cy="40" r="38" fill="#2C5E76"/>
+  
+  <!-- horizon line -->
+  <line x1="14" y1="48" x2="66" y2="48" stroke="#FAF6EF" stroke-width="1.6" stroke-linecap="round"/>
+  
+  <!-- sun arc above horizon -->
+  <path d="M28 48 A14 14 0 0 1 52 48" stroke="#FAF6EF" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- gentle wave suggestion -->
+  <path d="M18 54 c5-3 9 2 14 0 s9-3 14 0 s9 2 14 0" stroke="#FAF6EF" stroke-width="1.4" stroke-linecap="round"/>
+</svg>

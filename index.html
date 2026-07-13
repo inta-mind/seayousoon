@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sea You Soon & Spa — Luxury Seaside Villas in Methana, Greece</title>
+<meta name="description" content="Sea You Soon & Spa is a boutique pair of seaside villas in Methana, Greece, offering private pools, uninterrupted Aegean views, and quiet Greek hospitality.">
+<meta name="keywords" content="Methana villas, Greece luxury villas, seaside spa, Aegean sea view, boutique accommodation Methana">
+<meta name="author" content="Sea You Soon & Spa">
+<link rel="canonical" href="#">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Sea You Soon & Spa — Where the Aegean Meets Serenity">
+<meta property="og:description" content="Two boutique seaside villas in Methana, Greece. Private pools, sea views, and a slower way of being.">
+<meta property="og:image" content="img/hero-aegean-sunset.jpg">
+<meta property="og:url" content="#">
+<meta property="og:site_name" content="Sea You Soon & Spa">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sea You Soon & Spa — Where the Aegean Meets Serenity">
+<meta name="twitter:description" content="Two boutique seaside villas in Methana, Greece. Private pools, sea views, and a slower way of being.">
+<meta name="twitter:image" content="img/hero-aegean-sunset.jpg">
+
+<!-- Favicon (placeholder) -->
+<link rel="icon" type="image/png" href="img/favicon.svg">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<!-- Structured data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LodgingBusiness",
+  "name": "Sea You Soon & Spa",
+  "description": "Boutique seaside villas with private pools and spa experiences in Methana, Greece.",
+  "image": "img/hero-aegean-sunset.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Placeholder Street 1",
+    "addressLocality": "Methana",
+    "addressRegion": "Attica",
+    "postalCode": "18042",
+    "addressCountry": "GR"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 37.5833,
+    "longitude": 23.3667
+  },
+  "telephone": "+30-000-000-0000",
+  "priceRange": "$$$",
+  "amenityFeature": [
+    { "@type": "LocationFeatureSpecification", "name": "Private Pool", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Sea View", "value": true },
+    { "@type": "LocationFeatureSpecification", "name": "Spa", "value": true }
+  ]
+}
+</script>
+</head>
+<body>
+
+<!-- Scroll progress / "tide" indicator -->
+<div class="tide-indicator" aria-hidden="true"><span id="tideFill"></span></div>
+
+<!-- ================= NAVIGATION ================= -->
+<header class="site-header" id="siteHeader">
+  <nav class="nav-wrap" aria-label="Primary">
+    <a href="#hero" class="logo" aria-label="Sea You Soon & Spa — home">
+      <span class="logo-mark">SYS</span>
+      <span class="logo-text">Sea&nbsp;You&nbsp;Soon <em>&amp; Spa</em></span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about" class="nav-link">About</a></li>
+      <li><a href="#villas" class="nav-link">Villas</a></li>
+      <li><a href="#amenities" class="nav-link">Amenities</a></li>
+      <li><a href="#gallery" class="nav-link">Gallery</a></li>
+      <li><a href="#experience" class="nav-link">Experience</a></li>
+      <li><a href="#testimonials" class="nav-link">Guests</a></li>
+      <li><a href="#cta" class="nav-link nav-link--cta">Reserve</a></li>
+    </ul>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <!-- ================= HERO ================= -->
+  <!-- <section class="hero" id="hero">
+    <div class="hero-media">
+      <img src="img/hero-img2.png" alt="Sunset view over the Aegean Sea from the villa terrace" class="hero-img" id="heroImg">
+      <div class="hero-scrim"></div>
+    </div> -->
+
+<!-- ================= video ================= -->
+    <section class="hero" id="hero">
+    <div class="hero-media">
+        <!-- Loop the first video found in the img/ folder -->
+        <video class="hero-video" id="heroVideo" autoplay muted loop playsinline>
+        <source src="img/drone-shot-seeusoon.mp4" type="video/mp4">
+        <!-- Fallback image if video fails to load -->
+        <img src="img/hero-img2.png" alt="Sunset view over the Aegean Sea from the villa terrace" class="hero-img">
+        </video>
+        <!-- Dark overlay gradient for text contrast -->
+        <div class="hero-scrim"></div>
+    </div>
+    <!-- Your hero text content would go here -->
+
+    <div class="hero-content">
+      <!-- <p class="hero-eyebrow">Methana, Greece &nbsp;·&nbsp; 37.5833° N, 23.3667° E</p> -->
+      <p class="hero-eyebrow">Methana, Greece </p>
+      <h1 class="hero-title">Where the Aegean<br>Meets Serenity</h1>
+      <p class="hero-sub">Two boutique villas on the Methana coast, held quietly between pine hills and open sea — for the days you decide to slow down.</p>
+
+      <div class="hero-actions">
+        <a href="#villas" class="btn btn-primary">Explore the Villas</a>
+        <a href="https://www.booking.com/hotel/gr/sea-you-soon-amp-spa-1.en-gb.html" class="btn btn-ghost">View on Booking.com</a>
+        <a href="https://www.airbnb.com/rooms/1471663903554510386" class="btn btn-ghost">View on Airbnb</a>
+      </div>
+    </div>
+
+    <a href="#about" class="scroll-cue" aria-label="Scroll to explore">
+      <span class="scroll-cue-line"></span>
+      <span class="scroll-cue-label">Scroll</span>
+    </a>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="about" id="about">
+    <div class="section-inner about-grid">
+      <div class="about-media reveal">
+        <img src="img/726827363.jpg" alt="Private pool terrace overlooking the sea at dusk" loading="lazy">
+        <img src="img/726826432.jpg" alt="Detail of stone wall and outdoor lounge furniture" loading="lazy" class="about-media-small">
+      </div>
+
+      <div class="about-copy">
+        <p class="eyebrow reveal">The Place</p>
+        <h2 class="section-title reveal">A quieter kind of coastline</h2>
+        <p class="lead reveal">Methana sits apart from the well-worn island routes — a volcanic peninsula of pine and stone, thermal springs and small harbours, an hour from Athens by sea. Sea You Soon & Spa was built into this landscape rather than onto it.</p>
+        <p class="reveal">Each villa opens onto its own pool and a wall of glass facing the water. Inside, the palette stays close to the ground it was drawn from — lime plaster, raw wood, woven textiles — so the sea remains the only thing competing for your attention. Walk five minutes and you're at the shoreline; stay on the terrace and the shoreline comes to you.</p>
+        <p class="reveal">This is a place for slow mornings, long lunches, and the particular hospitality that only a small, family-run property can offer — spa rituals, quiet service, and a genuine wish that you leave rested.</p>
+
+        <ul class="about-points reveal">
+          <li>Uninterrupted sea views</li>
+          <li>Private pool at villas</li>
+          <li>In-villa spa treatments</li>
+          <li>Five minutes to the sea on foot</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="waterline" aria-hidden="true"><span></span></div>
+
+  <!-- ================= VILLAS ================= -->
+  <section class="villas" id="villas">
+    <div class="section-inner">
+      <p class="eyebrow reveal center">The Villas</p>
+      <h2 class="section-title center reveal">Two Villas, One Horizon</h2>
+      <p class="lead center reveal">Identical in comfort, distinct in character — each with its own pool, its own light, and its own view of the Saronic Gulf.</p>
+    </div>
+
+    <!-- Villa 1 -->
+    <article class="villa-block">
+      <div class="villa-media reveal">
+        <img src="img/726822367.jpg" alt="Sea You Soon & Spa 1 — infinity-edge pool facing the sea" loading="lazy">
+      </div>
+      <div class="villa-copy reveal">
+        <span class="villa-coord">Villa 01 &nbsp;·&nbsp; South-facing</span>
+        <h3>Sea You Soon & Spa 1</h3>
+        <p>Set slightly above the waterline, Villa 1 looks straight down the gulf toward the setting sun. A heated pool, a shaded outdoor dining terrace, and interiors finished in warm plaster and oak.</p>
+        <ul class="villa-highlights">
+          <li>Private heated pool</li>
+          <li>Full sea view from every room</li>
+          <li>Modern, sunlit interiors</li>
+          <li>Outdoor kitchen &amp; dining terrace</li>
+          <li>In-villa spa treatments on request</li>
+        </ul>
+        <div class="villa-actions">
+          <a href="https://www.booking.com/hotel/gr/sea-you-soon-amp-spa-1.en-gb.html" class="btn btn-outline">View on Booking.com</a>
+          <a href="https://www.airbnb.com/rooms/1471663903554510386" class="btn btn-outline">View on Airbnb</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Villa 2 -->
+    <article class="villa-block villa-block--reverse">
+      <div class="villa-media reveal">
+        <img src="img/villa-2.jpg" alt="Sea You Soon & Spa 2 — poolside lounge area at golden hour" loading="lazy">
+      </div>
+      <div class="villa-copy reveal">
+        <span class="villa-coord">Villa 02 &nbsp;·&nbsp; South-east facing</span>
+        <h3>Sea You Soon & Spa 2</h3>
+        <p>A few steps along the hillside, Villa 2 catches the first light over the water and holds it through the morning. Quieter, more enclosed, built for guests who want privacy above all.</p>
+        <ul class="villa-highlights">
+          <li>Private pool &amp; sun terrace</li>
+          <li>Sea view from the main living space</li>
+          <li>Modern interiors, natural materials</li>
+          <li>Covered outdoor lounge</li>
+          <li>Spa &amp; wellness experience on request</li>
+        </ul>
+        <div class="villa-actions">
+          <a href="https://www.booking.com/hotel/gr/sea-you-soon-amp-spa-2.en-gb.html" class="btn btn-outline">View on Booking.com</a>
+          <a href="https://www.airbnb.com/rooms/1474814885512665873" class="btn btn-outline">View on Airbnb</a>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================= AMENITIES ================= -->
+  <section class="amenities" id="amenities">
+    <div class="section-inner">
+      <p class="eyebrow reveal center">In Every Villa</p>
+      <h2 class="section-title center reveal">Comfort, Considered</h2>
+
+      <div class="amenities-grid">
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M4 34c3 3 6 3 9 0s6-3 9 0 6 3 9 0 6-3 9 0" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M12 34V14a4 4 0 018 0v20M20 24h8" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Swimming Pool</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="16" r="6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 36c4-8 12-12 18-12s14 4 18 12" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Sea View</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6c-6 6-9 11-9 16a9 9 0 0018 0c0-5-3-10-9-16z" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Spa Treatments</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 10a14 14 0 100 28 14 14 0 000-28z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M17 24a7 7 0 0114 0M20 20l8 8M28 20l-8 8" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Free WiFi</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="10" y="12" width="28" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 34l6-4M34 34l-6-4" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Air Conditioning</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M8 40l6-20h20l6 20" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M16 20l4-10h8l4 10" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Private Parking</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="10" width="32" height="24" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M14 34h20M16 22h8M16 28h12" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Modern Kitchen</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><ellipse cx="24" cy="24" rx="16" ry="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 24v6c0 4 7 8 16 8s16-4 16-8v-6" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Outdoor Dining</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="8" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 4v6M24 38v6M4 24h6M38 24h6M10 10l4 4M34 34l4 4M38 10l-4 4M14 34l-4 4" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Sun Terrace</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="8" y="10" width="32" height="20" rx="1" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M18 36h12" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Smart TV</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M12 20h20v10a10 10 0 01-10 10 10 10 0 01-10-10V20z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M32 22h3a4 4 0 010 8h-3" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Coffee Machine</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><rect x="14" y="6" width="20" height="36" rx="3" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M20 6v4h8V6" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Private Bathrooms</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M6 30h36M10 30v-8h28v8M14 22v-4h8v4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M6 34h4M38 34h4" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Luxury Beds</span>
+        </div>
+        <div class="amenity reveal">
+          <svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 6c4 6 10 8 10 16a10 10 0 01-20 0c0-8 6-10 10-16z" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M24 30v10" stroke="currentColor" stroke-width="1.5"/></svg>
+          <span>Wellness Rituals</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GALLERY ================= -->
+  <section class="gallery" id="gallery">
+    <div class="section-inner">
+      <p class="eyebrow reveal center">Gallery</p>
+      <h2 class="section-title center reveal">A Few Quiet Moments</h2>
+    </div>
+
+    <div class="masonry" id="masonry">
+      <button class="masonry-item reveal" data-full="img/gallery-sea-view.jpg" aria-label="Open full image: view of the open sea from the terrace">
+        <img src="img/727437967.jpg" alt="View of the open sea from the terrace" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/727438707.jpg" aria-label="Open full image: spa stones and towels by the pool">
+        <img src="img/727438707.jpg" alt="Spa stones and folded towels beside the pool" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/727438715.jpg" aria-label="Open full image: lounge chairs facing the sunset">
+        <img src="img/727438715.jpg" alt="Lounge chairs facing the sunset over the sea" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/726823258.jpg" aria-label="Open full image: breakfast table set on the terrace">
+        <img src="img/726823258.jpg" alt="Breakfast table set on the terrace overlooking the water" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/villa-1.jpeg" aria-label="Open full image: bedroom with sea view">
+        <img src="img/villa-1.jpeg" alt="Bedroom interior with a wall of glass facing the sea" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/727440425.jpg" aria-label="Open full image: exterior of Villa 1 at sunset">
+        <img src="img/727440425.jpg" alt="Exterior of Villa 1 at sunset" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/727438715.jpg" aria-label="Open full image: living room interior of Villa 2">
+        <img src="img/727438715.jpg" alt="Living room interior of Villa 2" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/726826419.jpg" aria-label="Open full image: nearby thermal springs">
+        <img src="img/726826419.jpg" alt="Nearby volcanic thermal springs of Methana" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/893004190.jpg" aria-label="Open full image: interior detail of Villa 1">
+        <img src="img/893004190.jpg" alt="Interior detail of Villa 1 living space" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/727440423.jpg" aria-label="Open full image: exterior of Villa 2 among the pines">
+        <img src="img/727440423.jpg" alt="Exterior of Villa 2 set among the pines" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/726822047.jpg" aria-label="Open full image: exterior of Villa 2 among the pines">
+        <img src="img/726822047.jpg" alt="Exterior of Villa 2 set among the pines" loading="lazy">
+      </button>
+      <button class="masonry-item reveal" data-full="img/726826401.jpg" aria-label="Open full image: exterior of Villa 2 among the pines">
+        <img src="img/726826401.jpg" alt="Exterior of Villa 2 set among the pines" loading="lazy">
+      </button>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+    <button class="lightbox-close" id="lightboxClose" aria-label="Close image viewer">&times;</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous image">&#8249;</button>
+    <img src="" alt="" class="lightbox-img" id="lightboxImg">
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next image">&#8250;</button>
+  </div>
+
+  <!-- ================= EXPERIENCE ================= -->
+  <section class="experience" id="experience">
+    <div class="experience-media reveal">
+      <img src="img/sea-view-1.jpeg" alt="Volcanic thermal springs near Methana" loading="lazy">
+    </div>
+    <div class="experience-copy">
+      <p class="eyebrow reveal">The Experience</p>
+      <h2 class="section-title reveal">Days that Move Slowly</h2>
+      <div class="experience-list">
+        <div class="experience-item reveal">
+          <h3>Mornings by the Sea</h3>
+          <p>Coffee on the terrace while the water is still glass, before the day has decided what it wants to be.</p>
+        </div>
+        <div class="experience-item reveal">
+          <h3>Sunsets Over the Gulf</h3>
+          <p>Both villas are oriented for the evening light — no need to go looking for the view.</p>
+        </div>
+        <div class="experience-item reveal">
+          <h3>Thermal Springs Nearby</h3>
+          <p>Methana's volcanic springs, a short drive away, have drawn visitors seeking warmth and mineral water for over a century.</p>
+        </div>
+        <div class="experience-item reveal">
+          <h3>Greek Cuisine</h3>
+          <p>Simple, seasonal, and local — tavernas along the coast serve what was caught or picked that morning.</p>
+        </div>
+        <div class="experience-item reveal">
+          <h3>Peace and Quiet</h3>
+          <p>No entertainment schedule, no crowds by the pool — just the sound of the sea and the pines.</p>
+        </div>
+        <div class="experience-item reveal">
+          <h3>Romantic Escapes</h3>
+          <p>Private pools and secluded terraces make Sea You Soon & Spa a natural choice for couples.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="waterline" aria-hidden="true"><span></span></div>
+
+  <!-- ================= WHY CHOOSE ================= -->
+  <section class="why" id="why">
+    <div class="section-inner">
+      <p class="eyebrow reveal center">Why Sea You Soon & Spa</p>
+      <h2 class="section-title center reveal">The Details that Stay With You</h2>
+
+      <div class="why-grid">
+        <div class="why-item reveal"><h3>Genuine Privacy</h3><p>Two villas only — never crowded, never shared.</p></div>
+        <div class="why-item reveal"><h3>Authentic Greece</h3><p>Methana, without the tourist crowds of the islands.</p></div>
+        <div class="why-item reveal"><h3>Modern Comfort</h3><p>Contemporary interiors built for real relaxation.</p></div>
+        <div class="why-item reveal"><h3>Exceptional Location</h3><p>Minutes from the sea, an hour from Athens.</p></div>
+        <div class="why-item reveal"><h3>True Relaxation</h3><p>Spa rituals designed around doing absolutely nothing.</p></div>
+        <div class="why-item reveal"><h3>Considered Architecture</h3><p>Built to frame the view, not compete with it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= TESTIMONIALS ================= -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-inner">
+      <p class="eyebrow reveal center">Guests</p>
+      <h2 class="section-title center reveal">Some Kind Words</h2>
+
+      <div class="testimonial-grid">
+        <blockquote class="testimonial reveal">
+          <p>"A vibe location away from the hustle, just relax and enjoy nature right out your door. The location close to the beach, a great pool and overall the images give you a good sense of what you get..magical location." </p>
+          <cite>— Yorai, Israel</cite>
+        </blockquote>
+        <blockquote class="testimonial reveal">
+          <p>“It is a neat, spotlessly clean accommodation, exactly as it appears in the photos and even better!! Katerina, who welcomed us, made our stay there so special!! Friendly, helpful, helpful with whatever we needed!!! We will definitely go back!!”</p>
+          <cite>— Katerina, Greece</cite>
+        </blockquote>
+        <blockquote class="testimonial reveal">
+          <p>"It was great. The entire property and its surroundings were great. Like a hotel."</p>
+          <cite>— Mara, Germany</cite>
+        </blockquote>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta" id="cta">
+    <div class="cta-media">
+      <img src="img/hero-img2.png" alt="Evening light over the villa pool" loading="lazy">
+      <div class="cta-scrim"></div>
+    </div>
+    <div class="cta-content reveal">
+      <p class="eyebrow eyebrow--light">Ready When You Are</p>
+      <h2 class="cta-title">Sea You Soon</h2>
+      <p class="cta-sub">Reservations are handled through Booking.com and Airbnb. Choose your villa below.</p>
+
+      <div class="cta-groups">
+        <div class="cta-group">
+          <span class="cta-group-label">Booking.com</span>
+          <div class="cta-group-buttons">
+            <a href="https://www.booking.com/hotel/gr/sea-you-soon-amp-spa-1.en-gb.html" class="btn btn-light">Sea You Soon & Spa 1</a>
+            <a href="https://www.booking.com/hotel/gr/sea-you-soon-amp-spa-2.en-gb.html" class="btn btn-light">Sea You Soon & Spa 2</a>
+          </div>
+        </div>
+        <div class="cta-group">
+          <span class="cta-group-label">Airbnb</span>
+          <div class="cta-group-buttons">
+            <a href="https://www.airbnb.com/rooms/1471663903554510386" class="btn btn-light">Sea You Soon & Spa 1</a>
+            <a href="https://www.airbnb.com/rooms/1474814885512665873" class="btn btn-light">Sea You Soon & Spa 2</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="section-inner footer-grid">
+    <div class="footer-brand">
+      <span class="logo-mark">SYS</span>
+      <p class="footer-name">Sea You Soon <em>&amp; Spa</em></p>
+      <p class="footer-tag">Methana, Greece</p>
+    </div>
+
+    <nav class="footer-nav" aria-label="Footer">
+      <a href="#about">About</a>
+      <a href="#villas">Villas</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#experience">Experience</a>
+      <a href="#testimonials">Guests</a>
+    </nav>
+
+    <div class="footer-location">
+      <h4>Location</h4>
+      <p>Pausanias baths, Agios Nikolaos<br>Methana, Greece</p>
+      <p>37.6373° N, 23.3573° E</p>
+    </div>
+
+    <div class="footer-social">
+      <h4>Follow</h4>
+      <div class="social-icons">
+        <a href="https://www.facebook.com/groups/1066652760875111/posts/2091398745067169/" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M14 8h2V5h-2c-2 0-3 1-3 3v2H9v3h2v6h3v-6h2l1-3h-3V8c0-.5.2-1 1-1z" fill="currentColor"/></svg>
+        </a>
+        <a href="#" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.4"/><circle cx="17.3" cy="6.7" r="1"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-inner footer-bottom">
+    <p>&copy; <span id="year"></span> Sea You Soon & Spa. All rights reserved.</p>
+  </div>
+</footer>
+
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+</button>
+
+<script src="script.js"></script>
+</body>
+</html>
