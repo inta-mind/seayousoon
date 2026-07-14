@@ -104,11 +104,25 @@
     <section class="hero" id="hero">
     <div class="hero-media">
         <!-- Loop the first video found in the img/ folder -->
-        <video class="hero-video" id="heroVideo" autoplay muted loop playsinline>
-        <source src="img/hero-dr-su-com.mp4" type="video/mp4">
+        <!-- <video class="hero-video" id="heroVideo" autoplay muted loop playsinline>
+        <source src="img/hero-dr-su-com.mp4" type="video/mp4"> -->
         <!-- Fallback image if video fails to load -->
-        <img src="img/hero-img2.png" alt="Sunset view over the Aegean Sea from the villa terrace" class="hero-img">
+        <!-- <img src="img/727433354.jpg" alt="Sunset view over the Aegean Sea from the villa terrace" class="hero-img">
+        </video> -->
+        <video
+            class="hero-video"
+            id="heroVideo"
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="metadata"
+            poster="img/727433354.jpg"
+            aria-hidden="true">
+            <source src="img/hero-dr-su-com.mp4" type="video/mp4">
+            <img src="img/727433354.jpg" alt="Sunset view over the Aegean Sea from the villa terrace" class="hero-img">
         </video>
+
         <!-- Dark overlay gradient for text contrast -->
         <div class="hero-scrim"></div>
     </div>
