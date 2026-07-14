@@ -333,7 +333,8 @@ section { position: relative; }
 .hero {
   position: relative;
   height: 100vh;
-  min-height: 640px;
+  min-height: 100dvh;
+  /* min-height: 640px; */
   display: flex;
   align-items: flex-end;
   overflow: hidden;
@@ -395,6 +396,7 @@ section { position: relative; }
 /* blue */
 /* .hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,41,58,0.55), rgba(18,41,58,0.85)); } */
 
+/* good init */
 .hero-content {
   position: relative;
   z-index: 1;
@@ -403,6 +405,24 @@ section { position: relative; }
   padding: 0 var(--edge-pad) var(--space-xl);
   width: 100%;
 }
+
+/* Hero content improvements */
+/* .hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  padding: 2rem 1.5rem;
+  padding-top: 120px;
+  padding-bottom: 4rem;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+} */
 
 .hero-video {
   position: absolute;
