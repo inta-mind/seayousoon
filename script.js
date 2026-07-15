@@ -194,7 +194,8 @@ function initHeroVideo() {
   const saveData = !!(connection && connection.saveData);
   const slowConnection = !!(connection && /(^|-)2g/.test(connection.effectiveType || ''));
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const isSmallViewport = window.innerWidth < 700;
+  // const isSmallViewport = window.innerWidth < 700;
+  const isSmallViewport = window.innerWidth < 250;
 
   const shouldSkipVideo = saveData || slowConnection || prefersReducedMotion || isSmallViewport;
   if (shouldSkipVideo || !source) return; // poster image remains, nothing downloaded
