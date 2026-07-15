@@ -23,7 +23,10 @@
   --font-body: 'Manrope', sans-serif;
 
   /* Type scale (fluid) */
-  --fs-hero:  clamp(2.75rem, 6vw + 1rem, 6rem);
+  /* Hero title scales with BOTH width and height (vw + vh) so it shrinks
+     automatically on short/wide viewports (laptops, landscape phones)
+     instead of only responding to width and overflowing into the header. */
+  --fs-hero:  clamp(2.15rem, 3vw + 2.2vh, 4.75rem);
   --fs-h2:    clamp(2rem, 3.2vw + 0.5rem, 3.4rem);
   --fs-h3:    clamp(1.3rem, 1.2vw + 0.8rem, 1.7rem);
   --fs-lead:  clamp(1.05rem, 0.6vw + 0.85rem, 1.3rem);
@@ -41,6 +44,7 @@
   /* Layout */
   --max-width: 1320px;
   --edge-pad: clamp(1.25rem, 4vw, 4rem);
+  --header-h: 84px;
 
   /* Motion */
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
@@ -308,10 +312,13 @@ section { position: relative; }
 .btn-primary:hover { background: var(--gold); color: var(--warm-white); }
 
 .btn-ghost {
-  border-color: rgba(250, 246, 239, 0.6);
+  border-color: rgba(250, 246, 239, 0.5);
   color: var(--warm-white);
+  background: rgba(250, 246, 239, 0.06);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
-.btn-ghost:hover { border-color: var(--warm-white); background: rgba(250,246,239,0.1); }
+.btn-ghost:hover { border-color: var(--warm-white); background: rgba(250,246,239,0.16); }
 
 .btn-outline {
   border-color: var(--deep-navy);
@@ -332,20 +339,18 @@ section { position: relative; }
 
 .hero {
   position: relative;
+  /* Triple fallback: plain vh (old browsers) -> dvh (accounts for mobile
+     browser chrome) -> --vh100 (JS-measured window.innerHeight, set in
+     script.js) so the hero always matches what's actually visible and never
+     forces a scroll to see the rest of the video frame on mobile. */
   height: 100vh;
-  min-height: 100dvh;
-  /* min-height: 640px; */
+  height: 100dvh;
+  height: var(--vh100, 100dvh);
+  min-height: 420px;
   display: flex;
-  align-items: flex-end;
   overflow: hidden;
   color: var(--warm-white);
 }
-
-/* .hero-media {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-} */
 
 .hero-media {
   position: absolute;
@@ -356,73 +361,35 @@ section { position: relative; }
   z-index: 1;
 }
 
-
-/* .hero-scrim {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(18,41,58,0.35) 0%, rgba(18,41,58,0.25) 40%, rgba(18,41,58,0.75) 100%);
-} */
-
-/* .hero-scrim {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.2) 0%,
-    rgba(0, 0, 0, 0.4) 50%,
-    rgba(0, 0, 0, 0.6) 100%
-  );
-  z-index: 2;
-  pointer-events: none;
-} */
-
-
-/* good-ini */
 .hero-scrim {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  /* background: rgba(0, 0, 0, 0.5); */
-  background: rgba(0, 0, 0, 0.65);
+  /* background: linear-gradient(180deg, rgba(10,20,28,0.35) 0%, rgba(10,20,28,0.35) 45%, rgba(10,20,28,0.78) 100%); */
+  background: linear-gradient(180deg, rgba(10,20,28,0.50) 0%, rgba(10,20,28,0.50) 45%, rgba(10,20,28,0.88) 100%);
   z-index: 2;
   pointer-events: none;
 }
 
-/* blue */
-/* .hero-scrim { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(18,41,58,0.55), rgba(18,41,58,0.85)); } */
-
-/* good init */
 .hero-content {
   position: relative;
-  z-index: 1;
+  z-index: 3;
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: 0 var(--edge-pad) var(--space-xl);
+  padding: var(--header-h) var(--edge-pad) 0;
   width: 100%;
-}
-
-/* Hero content improvements */
-/* .hero-content {
-  position: relative;
-  z-index: 1;
-  max-width: 800px;
-  padding: 2rem 1.5rem;
-  padding-top: 120px;
-  padding-bottom: 4rem;
-  height: 100vh;
-  height: 100dvh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  text-align: center;
-  margin: 0 auto;
-} */
+  flex: 1;
+  /* Reserve real space for the header at the top and the scroll-cue at the
+     bottom, so the title can grow into the middle without ever reaching
+     either — this is what stops it sliding under the logo/nav on short,
+     wide (laptop) screens. */
+  padding-bottom: clamp(2.5rem, 8vh, 5rem);
+}
 
 .hero-video {
   position: absolute;
@@ -432,16 +399,16 @@ section { position: relative; }
   min-height: 100%;
   width: auto;
   height: auto;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%) scale(1);
   object-fit: cover;
+  animation: heroKenBurns 24s ease-in-out infinite alternate;
 }
-
-
-.hero-img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  will-change: transform;
+@keyframes heroKenBurns {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to   { transform: translate(-50%, -50%) scale(1.08); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-video { animation: none; }
 }
 
 .hero-eyebrow {
@@ -454,10 +421,11 @@ section { position: relative; }
 
 .hero-title {
   font-size: var(--fs-hero);
-  line-height: 1.05;
+  line-height: 1.08;
   color: var(--warm-white);
   max-width: 16ch;
   margin-bottom: var(--space-s);
+  text-wrap: balance;
 }
 
 .hero-sub {
@@ -471,6 +439,21 @@ section { position: relative; }
   display: flex;
   flex-wrap: wrap;
   gap: 0.9rem;
+}
+
+/* Entrance animation for hero copy — JS adds .is-in on load */
+.reveal-hero {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+}
+.hero.is-in .reveal-hero { opacity: 1; transform: translateY(0); }
+.hero.is-in .hero-eyebrow { transition-delay: 0.05s; }
+.hero.is-in .hero-title   { transition-delay: 0.15s; }
+.hero.is-in .hero-sub     { transition-delay: 0.28s; }
+.hero.is-in .hero-actions { transition-delay: 0.4s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal-hero { opacity: 1; transform: none; transition: none; }
 }
 
 .scroll-cue {
@@ -1036,10 +1019,39 @@ section { position: relative; }
 }
 
 @media (max-width: 640px) {
-  .hero-actions { flex-direction: column; align-items: stretch; }
+  /* Buttons keep their own width and wrap onto new lines instead of
+     stretching edge-to-edge, and no longer cover the full viewport width. */
+  .hero-actions { flex-direction: column; align-items: flex-start; }
+  .hero-actions .btn { width: auto; max-width: 86vw; }
   .cta-groups { grid-template-columns: 1fr; }
   .about-points { grid-template-columns: 1fr; }
   .footer-grid { grid-template-columns: 1fr; }
   .masonry { columns: 2 160px; }
   .scroll-cue { display: none; }
+}
+
+/* --------------------------------------------------------------------------
+   Short viewports: wide-but-short laptop windows AND landscape phones.
+   This is what actually stops the hero title sliding under the header —
+   --fs-hero already shrinks with vh, this trims the surrounding spacing too
+   so everything comfortably fits between the header and the bottom edge.
+   -------------------------------------------------------------------------- */
+@media (max-height: 720px) {
+  .hero-content { padding-top: calc(var(--header-h) * 0.85); padding-bottom: clamp(1.25rem, 5vh, 2.5rem); }
+  .hero-sub { margin-bottom: var(--space-s); }
+  .hero-eyebrow { margin-bottom: 0.4rem; }
+}
+
+@media (max-height: 520px) {
+  :root { --fs-hero: clamp(1.7rem, 2.6vw + 3.2vh, 3rem); }
+  .hero-sub { display: none; }
+  .hero-content { padding-top: calc(var(--header-h) * 0.7); }
+  .hero-actions { flex-direction: row; }
+  .scroll-cue { display: none; }
+}
+
+/* Very small phones: keep the title comfortably sized rather than filling
+   the whole width */
+@media (max-width: 380px) {
+  .hero-title { max-width: 13ch; }
 }

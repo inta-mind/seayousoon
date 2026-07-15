@@ -25,12 +25,16 @@
 <meta name="twitter:image" content="img/hero-aegean-sunset.jpg">
 
 <!-- Favicon (placeholder) -->
-<link rel="icon" type="image/png" href="img/favicon.svg">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<meta name="theme-color" content="#12293A">
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Preload the hero poster so it paints immediately (LCP), well before the ~2.4MB video is even considered -->
+<link rel="preload" as="image" href="img/727433354.jpg" fetchpriority="high">
 
 <link rel="stylesheet" href="style.css">
 
@@ -94,50 +98,39 @@
 <main id="top">
 
   <!-- ================= HERO ================= -->
-  <!-- <section class="hero" id="hero">
+  <section class="hero" id="hero">
     <div class="hero-media">
-      <img src="img/hero-img2.png" alt="Sunset view over the Aegean Sea from the villa terrace" class="hero-img" id="heroImg">
+      <!--
+        Video is intentionally NOT set to autoplay/preload in markup.
+        script.js (initHeroVideo) decides whether to fetch the 2.4MB file at all,
+        based on viewport size, Save-Data header, connection speed and
+        prefers-reduced-motion. Everyone gets the poster image instantly either way.
+      -->
+      <video
+          class="hero-video"
+          id="heroVideo"
+          muted
+          loop
+          playsinline
+          preload="none"
+          poster="img/727433354.jpg"
+          aria-hidden="true">
+        <source data-src="img/hero-dr-su-com.mp4" type="video/mp4">
+      </video>
+
+      <!-- Dark overlay gradient for text contrast -->
       <div class="hero-scrim"></div>
-    </div> -->
-
-<!-- ================= video ================= -->
-    <section class="hero" id="hero">
-    <div class="hero-media">
-        <!-- Loop the first video found in the img/ folder -->
-        <!-- <video class="hero-video" id="heroVideo" autoplay muted loop playsinline>
-        <source src="img/hero-dr-su-com.mp4" type="video/mp4"> -->
-        <!-- Fallback image if video fails to load -->
-        <!-- <img src="img/727433354.jpg" alt="Sunset view over the Aegean Sea from the villa terrace" class="hero-img">
-        </video> -->
-        <video
-            class="hero-video"
-            id="heroVideo"
-            autoplay
-            muted
-            loop
-            playsinline
-            preload="metadata"
-            poster="img/727433354.jpg"
-            aria-hidden="true">
-            <source src="img/hero-dr-su-com.mp4" type="video/mp4">
-            <img src="img/727433354.jpg" alt="Sunset view over the Aegean Sea from the villa terrace" class="hero-img">
-        </video>
-
-        <!-- Dark overlay gradient for text contrast -->
-        <div class="hero-scrim"></div>
     </div>
-    <!-- Your hero text content would go here -->
 
     <div class="hero-content">
-      <!-- <p class="hero-eyebrow">Methana, Greece &nbsp;·&nbsp; 37.5833° N, 23.3667° E</p> -->
-      <p class="hero-eyebrow">Methana, Greece </p>
-      <h1 class="hero-title">Where the Aegean<br>Meets Serenity</h1>
-      <p class="hero-sub">Two boutique villas on the Methana coast, held quietly between pine hills and open sea — for the days you decide to slow down.</p>
+      <p class="hero-eyebrow reveal-hero">Methana, Greece</p>
+      <h1 class="hero-title reveal-hero">Where the Aegean<br>Meets Serenity</h1>
+      <p class="hero-sub reveal-hero">Two boutique villas on the Methana coast, held quietly between pine hills and open sea — for the days you decide to slow down.</p>
 
-      <div class="hero-actions">
+      <div class="hero-actions reveal-hero">
         <a href="#villas" class="btn btn-primary">Explore the Villas</a>
-        <a href="https://www.booking.com/hotel/gr/sea-you-soon-amp-spa-1.en-gb.html" class="btn btn-ghost">View on Booking.com</a>
-        <a href="https://www.airbnb.com/rooms/1471663903554510386" class="btn btn-ghost">View on Airbnb</a>
+        <a href="https://www.booking.com/hotel/gr/sea-you-soon-amp-spa-1.en-gb.html" class="btn btn-ghost">Booking.com</a>
+        <a href="https://www.airbnb.com/rooms/1471663903554510386" class="btn btn-ghost">Airbnb</a>
       </div>
     </div>
 
@@ -151,8 +144,8 @@
   <section class="about" id="about">
     <div class="section-inner about-grid">
       <div class="about-media reveal">
-        <img src="img/726827363.jpg" alt="Private pool terrace overlooking the sea at dusk" loading="lazy">
-        <img src="img/726826432.jpg" alt="Detail of stone wall and outdoor lounge furniture" loading="lazy" class="about-media-small">
+        <img src="img/726827363.jpg" alt="Private pool terrace overlooking the sea at dusk" loading="lazy" decoding="async">
+        <img src="img/726826432.jpg" alt="Detail of stone wall and outdoor lounge furniture" loading="lazy" decoding="async" class="about-media-small">
       </div>
 
       <div class="about-copy">
@@ -185,7 +178,7 @@
     <!-- Villa 1 -->
     <article class="villa-block">
       <div class="villa-media reveal">
-        <img src="img/726822367.jpg" alt="Sea You Soon & Spa 1 — infinity-edge pool facing the sea" loading="lazy">
+        <img src="img/726822367.jpg" alt="Sea You Soon & Spa 1 — infinity-edge pool facing the sea" loading="lazy" decoding="async">
       </div>
       <div class="villa-copy reveal">
         <span class="villa-coord">Villa 01 &nbsp;·&nbsp; South-facing</span>
@@ -208,7 +201,7 @@
     <!-- Villa 2 -->
     <article class="villa-block villa-block--reverse">
       <div class="villa-media reveal">
-        <img src="img/villa-2.jpg" alt="Sea You Soon & Spa 2 — poolside lounge area at golden hour" loading="lazy">
+        <img src="img/villa-2.jpg" alt="Sea You Soon & Spa 2 — poolside lounge area at golden hour" loading="lazy" decoding="async">
       </div>
       <div class="villa-copy reveal">
         <span class="villa-coord">Villa 02 &nbsp;·&nbsp; South-east facing</span>
@@ -305,40 +298,40 @@
 
     <div class="masonry" id="masonry">
       <button class="masonry-item reveal" data-full="img/gallery-sea-view.jpg" aria-label="Open full image: view of the open sea from the terrace">
-        <img src="img/727437967.jpg" alt="View of the open sea from the terrace" loading="lazy">
+        <img src="img/727437967.jpg" alt="View of the open sea from the terrace" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/727438707.jpg" aria-label="Open full image: spa stones and towels by the pool">
-        <img src="img/727438707.jpg" alt="Spa stones and folded towels beside the pool" loading="lazy">
+        <img src="img/727438707.jpg" alt="Spa stones and folded towels beside the pool" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/727438715.jpg" aria-label="Open full image: lounge chairs facing the sunset">
-        <img src="img/727438715.jpg" alt="Lounge chairs facing the sunset over the sea" loading="lazy">
+        <img src="img/727438715.jpg" alt="Lounge chairs facing the sunset over the sea" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/726823258.jpg" aria-label="Open full image: breakfast table set on the terrace">
-        <img src="img/726823258.jpg" alt="Breakfast table set on the terrace overlooking the water" loading="lazy">
+        <img src="img/726823258.jpg" alt="Breakfast table set on the terrace overlooking the water" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/villa-1.jpeg" aria-label="Open full image: bedroom with sea view">
-        <img src="img/villa-1.jpeg" alt="Bedroom interior with a wall of glass facing the sea" loading="lazy">
+        <img src="img/villa-1.jpeg" alt="Bedroom interior with a wall of glass facing the sea" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/727440425.jpg" aria-label="Open full image: exterior of Villa 1 at sunset">
-        <img src="img/727440425.jpg" alt="Exterior of Villa 1 at sunset" loading="lazy">
+        <img src="img/727440425.jpg" alt="Exterior of Villa 1 at sunset" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/727438715.jpg" aria-label="Open full image: living room interior of Villa 2">
-        <img src="img/727438715.jpg" alt="Living room interior of Villa 2" loading="lazy">
+        <img src="img/727438715.jpg" alt="Living room interior of Villa 2" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/726826419.jpg" aria-label="Open full image: nearby thermal springs">
-        <img src="img/726826419.jpg" alt="Nearby volcanic thermal springs of Methana" loading="lazy">
+        <img src="img/726826419.jpg" alt="Nearby volcanic thermal springs of Methana" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/893004190.jpg" aria-label="Open full image: interior detail of Villa 1">
-        <img src="img/893004190.jpg" alt="Interior detail of Villa 1 living space" loading="lazy">
+        <img src="img/893004190.jpg" alt="Interior detail of Villa 1 living space" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/727440423.jpg" aria-label="Open full image: exterior of Villa 2 among the pines">
-        <img src="img/727440423.jpg" alt="Exterior of Villa 2 set among the pines" loading="lazy">
+        <img src="img/727440423.jpg" alt="Exterior of Villa 2 set among the pines" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/726822047.jpg" aria-label="Open full image: exterior of Villa 2 among the pines">
-        <img src="img/726822047.jpg" alt="Exterior of Villa 2 set among the pines" loading="lazy">
+        <img src="img/726822047.jpg" alt="Exterior of Villa 2 set among the pines" loading="lazy" decoding="async">
       </button>
       <button class="masonry-item reveal" data-full="img/726826401.jpg" aria-label="Open full image: exterior of Villa 2 among the pines">
-        <img src="img/726826401.jpg" alt="Exterior of Villa 2 set among the pines" loading="lazy">
+        <img src="img/726826401.jpg" alt="Exterior of Villa 2 set among the pines" loading="lazy" decoding="async">
       </button>
     </div>
   </section>
@@ -354,7 +347,7 @@
   <!-- ================= EXPERIENCE ================= -->
   <section class="experience" id="experience">
     <div class="experience-media reveal">
-      <img src="img/sea-view-1.jpeg" alt="Volcanic thermal springs near Methana" loading="lazy">
+      <img src="img/sea-view-1.jpeg" alt="Volcanic thermal springs near Methana" loading="lazy" decoding="async">
     </div>
     <div class="experience-copy">
       <p class="eyebrow reveal">The Experience</p>
@@ -433,7 +426,7 @@
   <!-- ================= CTA ================= -->
   <section class="cta" id="cta">
     <div class="cta-media">
-      <img src="img/hero-img2.png" alt="Evening light over the villa pool" loading="lazy">
+      <img src="img/hero-img2.png" alt="Evening light over the villa pool" loading="lazy" decoding="async">
       <div class="cta-scrim"></div>
     </div>
     <div class="cta-content reveal">

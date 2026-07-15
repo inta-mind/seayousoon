@@ -4,18 +4,39 @@
    ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initViewportHeightFix();
   initStickyHeader();
   initMobileNav();
   initSmoothScroll();
   initActiveNav();
   initScrollReveal();
   initTideIndicator();
-  initHeroParallax();
+  initHeroVideo();
+  initHeroReveal();
   initGalleryLightbox();
   initBackToTop();
   initFooterYear();
-  preloadHeroImage();
 });
+
+/* --------------------------------------------------------------------------
+   Real viewport height fix
+   Mobile browser chrome (address bar, tab strip) makes 100vh taller than
+   what's actually visible, which is exactly why the hero could need a
+   scroll to see the bottom of the video. `dvh` fixes most modern browsers
+   on its own; this sets a --vh100 custom property from the real
+   window.innerHeight as a belt-and-braces fallback for the rest.
+   -------------------------------------------------------------------------- */
+function initViewportHeightFix() {
+  const setVar = () => {
+    document.documentElement.style.setProperty('--vh100', `${window.innerHeight}px`);
+  };
+  setVar();
+  window.addEventListener('resize', setVar, { passive: true });
+  window.addEventListener('orientationchange', setVar);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', setVar, { passive: true });
+  }
+}
 
 /* --------------------------------------------------------------------------
    Sticky navbar — becomes opaque after leaving the hero
@@ -156,25 +177,70 @@ function initTideIndicator() {
 }
 
 /* --------------------------------------------------------------------------
-   Subtle hero parallax
+   Bandwidth-aware hero video loading
+   The hero poster paints instantly (it's tiny and preloaded in <head>).
+   The ~2.4MB video is only fetched when it's actually worth it: a real
+   desktop/tablet viewport, no Save-Data flag, no slow connection, and no
+   reduced-motion preference. Everyone else keeps the still poster —
+   a big, invisible win for mobile data and first-load speed.
    -------------------------------------------------------------------------- */
-function initHeroParallax() {
-  const heroImg = document.getElementById('heroImg');
+function initHeroVideo() {
   const hero = document.getElementById('hero');
-  if (!heroImg || !hero) return;
+  const video = document.getElementById('heroVideo');
+  if (!hero || !video) return;
 
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) return;
+  const source = video.querySelector('source[data-src]');
+  const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+  const saveData = !!(connection && connection.saveData);
+  const slowConnection = !!(connection && /(^|-)2g/.test(connection.effectiveType || ''));
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const isSmallViewport = window.innerWidth < 700;
 
-  const update = () => {
-    const rect = hero.getBoundingClientRect();
-    if (rect.bottom < 0 || rect.top > window.innerHeight) return;
-    const offset = window.scrollY * 0.35;
-    heroImg.style.transform = `translateY(${offset}px) scale(1.08)`;
+  const shouldSkipVideo = saveData || slowConnection || prefersReducedMotion || isSmallViewport;
+  if (shouldSkipVideo || !source) return; // poster image remains, nothing downloaded
+
+  const loadAndPlay = () => {
+    if (video.getAttribute('src') || video.dataset.loaded) return;
+    video.dataset.loaded = 'true';
+    source.src = source.getAttribute('data-src');
+    video.preload = 'auto';
+    video.load();
+    video.play().catch(() => {
+      // Autoplay blocked by the browser — the poster stays visible, no harm done.
+    });
   };
 
-  update();
-  window.addEventListener('scroll', update, { passive: true });
+  if ('requestIdleCallback' in window) {
+    requestIdleCallback(loadAndPlay, { timeout: 2500 });
+  } else {
+    window.addEventListener('load', loadAndPlay);
+  }
+
+  // Save battery/bandwidth: pause decoding while the tab isn't visible.
+  document.addEventListener('visibilitychange', () => {
+    if (!video.dataset.loaded) return;
+    if (document.hidden) {
+      video.pause();
+    } else {
+      video.play().catch(() => {});
+    }
+  });
+}
+
+/* --------------------------------------------------------------------------
+   Hero entrance reveal — fades the hero copy in on first paint
+   -------------------------------------------------------------------------- */
+function initHeroReveal() {
+  const hero = document.getElementById('hero');
+  if (!hero) return;
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReducedMotion) {
+    hero.classList.add('is-in');
+    return;
+  }
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => hero.classList.add('is-in'));
+  });
 }
 
 /* --------------------------------------------------------------------------
@@ -261,18 +327,4 @@ function initBackToTop() {
 function initFooterYear() {
   const el = document.getElementById('year');
   if (el) el.textContent = new Date().getFullYear();
-}
-
-/* --------------------------------------------------------------------------
-   Preload the hero image for a smooth first paint
-   -------------------------------------------------------------------------- */
-function preloadHeroImage() {
-  const heroImg = document.getElementById('heroImg');
-  if (!heroImg) return;
-  const src = heroImg.getAttribute('src');
-  const preloadLink = document.createElement('link');
-  preloadLink.rel = 'preload';
-  preloadLink.as = 'image';
-  preloadLink.href = src;
-  document.head.appendChild(preloadLink);
 }
